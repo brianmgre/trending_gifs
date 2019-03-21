@@ -26,7 +26,7 @@ class GifContainer extends Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log("gif state", this.state);
     return <div>heyo</div>;
   }
 }
