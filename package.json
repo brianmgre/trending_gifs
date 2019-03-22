@@ -2,13 +2,11 @@
   "name": "homework-front-end",
   "version": "1.0.0",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "0.2.1"
-  },
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^15.2.1",
-    "react-dom": "^15.2.1"
+    "react-dom": "^15.2.1",
+    "react-scripts": "^1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,5 +15,8 @@
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"
+  },
+  "devDependencies": {
+    "react-scripts": "^1.1.4"
   }
 }
