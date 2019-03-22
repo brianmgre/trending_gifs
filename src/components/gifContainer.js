@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-const url = process.env.REACT_APP_DB_URL;
-const giphyApi = process.env.REACT_APP_DB;
+const url = process.env.REACT_APP_GIF_URL;
+const giphyApi = process.env.REACT_APP_API;
 
 class GifContainer extends Component {
   constructor(props) {
