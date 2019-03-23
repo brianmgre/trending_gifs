@@ -4,6 +4,9 @@ import GifList from "./gifList";
 
 const url = process.env.REACT_APP_GIF_URL;
 const giphyApi = process.env.REACT_APP_API;
+const GphApiClient = require("giphy-js-sdk-core");
+const client = GphApiClient(`${giphyApi}`);
+const gifLimit = 20;
 
 class GifContainer extends Component {
   constructor(props) {
@@ -14,15 +17,16 @@ class GifContainer extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get(`${url}/v1/gifs/trending?api_key=${giphyApi}`)
+    client
+      .trending("gifs", { limit: gifLimit })
       .then(res => {
-        if (res.status === 200) {
-          this.setState({ gifs: res.data.data });
+        console.log("response", res);
+        if (res.meta.status === 200) {
+          this.setState({ gifs: res.data });
         }
       })
       .catch(err => {
-        console.log("error fetching data", err);
+        console.log(err, "error");
       });
   }
 

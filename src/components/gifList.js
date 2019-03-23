@@ -1,17 +1,12 @@
 import React from "react";
+import Gif from "./gif";
 
 const GifList = props => {
-  const gifInfo = props.gifs.map(gif => (
-    <div key={gif.id}>
-      <p>{gif.title}</p>
-      <img src={gif.images.downsized.url} alt="Trending Gifs" />
-    </div>
-  ));
-
   return (
     <div>
-      <p>titles</p>
-      {gifInfo}
+      {props.gifs.map(gif => (
+        <Gif key={gif.id} gif={gif} />
+      ))}
     </div>
   );
 };

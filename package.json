@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
     "axios": "^0.18.0",
+    "giphy-js-sdk-core": "^1.0.6",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "^1.1.4"
   },
   "scripts": {
@@ -15,8 +18,5 @@
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"
-  },
-  "devDependencies": {
-    "react-scripts": "^1.1.4"
   }
 }
