@@ -4,7 +4,7 @@ import GifList from "./gifList";
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");
 const client = GphApiClient(`${giphyApi}`);
-const gifLimit = 20;
+const gifLimit = 24;
 
 class GifContainer extends Component {
   constructor(props) {
