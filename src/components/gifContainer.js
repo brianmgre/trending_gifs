@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import GifList from "./gifList";
 
 const url = process.env.REACT_APP_GIF_URL;
 const giphyApi = process.env.REACT_APP_API;
@@ -17,7 +18,7 @@ class GifContainer extends Component {
       .get(`${url}/v1/gifs/trending?api_key=${giphyApi}`)
       .then(res => {
         if (res.status === 200) {
-          this.setState({ gifs: res.data });
+          this.setState({ gifs: res.data.data });
         }
       })
       .catch(err => {
@@ -27,7 +28,11 @@ class GifContainer extends Component {
 
   render() {
     console.log("gif state", this.state);
-    return <div>heyo</div>;
+    return (
+      <div>
+        <GifList gifs={this.state.gifs} />
+      </div>
+    );
   }
 }
 
