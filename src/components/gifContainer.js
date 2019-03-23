@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import GifList from "./gifList";
 
-const url = process.env.REACT_APP_GIF_URL;
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");
 const client = GphApiClient(`${giphyApi}`);

@@ -13,3 +13,5 @@ const Routes = props => {
     </div>
   );
 };
+
+export default Routes;
