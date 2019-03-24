@@ -12,7 +12,7 @@ const GifModal = props => {
       <DialogContent>
         <img src={props.gif.images.original.url} alt={props.gif.title} />
       </DialogContent>
-      Rating: {props.gif.rating}
+      Rating: {props.gif.rating.toUpperCase()}
     </Dialog>
   );
 };
