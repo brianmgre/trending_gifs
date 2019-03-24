@@ -15,9 +15,14 @@ const GifList = props => {
     // </Grid>
 
     <GridList cellHeight={160} cols={5}>
-      {props.gifs.map(gif => (
+      {props.gifs.map((gif, index) => (
         <GridListTile cols={1} key={gif.id}>
-          <Gif gif={gif} gifsOn={props.gifsOn} />
+          <Gif
+            gif={gif}
+            index={index}
+            gifsOn={props.gifsOn}
+            AddToFavorites={props.AddToFavorites}
+          />
         </GridListTile>
       ))}
     </GridList>
