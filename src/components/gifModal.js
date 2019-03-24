@@ -4,11 +4,15 @@ import Dialog from "@material-ui/core/Dialog";
 import { DialogContent } from "@material-ui/core";
 
 const GifModal = props => {
-  const { classes, close, ...other } = props;
+  // console.log(props.gif);
+  const { classes, close, AddToFavorites, ...other } = props;
 
   return (
-    <Dialog {...other} onClick={close}>
-      <DialogTitle>{props.gif.title}</DialogTitle>
+    <Dialog {...other}>
+      <i className="material-icons" onClick={AddToFavorites(props.index)}>
+        favorite
+      </i>
+      <DialogTitle onClick={close}>{props.gif.title}</DialogTitle>
       <DialogContent>
         <img src={props.gif.images.original.url} alt={props.gif.title} />
       </DialogContent>
