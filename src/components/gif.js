@@ -14,27 +14,28 @@ class Gif extends Component {
   };
 
   close = () => {
-    this.setState({ open: false });
+    this.setState({ open: !this.state.open });
   };
 
   render() {
     return (
       <div>
-        {/* //     {this.state.open ? ( */}
-        {/* //       <img src={this.props.gif.images.original.url} />
-    //     ) : (
-    //       <img src={this.props.gif.images.fixed_width_still.url} />
-    //     )} */}
-
         <GifModal
           open={this.state.open}
           close={this.close}
           gif={this.props.gif}
         />
-        <img
-          src={this.props.gif.images.fixed_width_still.url}
-          onClick={this.open}
-        />
+        {this.props.gifsOn ? (
+          <img
+            src={this.props.gif.images.fixed_width.url}
+            onClick={this.open}
+          />
+        ) : (
+          <img
+            src={this.props.gif.images.fixed_width_still.url}
+            onClick={this.open}
+          />
+        )}
       </div>
     );
   }

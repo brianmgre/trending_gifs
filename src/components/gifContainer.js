@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GifList from "./gifList";
+import ToggleForm from "./toggleForm";
 
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");
@@ -10,7 +11,8 @@ class GifContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gifs: []
+      gifs: [],
+      gifsOn: false
     };
   }
 
@@ -28,11 +30,19 @@ class GifContainer extends Component {
       });
   }
 
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.checked });
+  };
+
   render() {
     console.log("gif state", this.state);
     return (
       <div>
-        <GifList gifs={this.state.gifs} />
+        <ToggleForm
+          handleChange={this.handleChange}
+          checked={this.state.gifsOn}
+        />
+        <GifList gifs={this.state.gifs} gifsOn={this.state.gifsOn} />
       </div>
     );
   }
