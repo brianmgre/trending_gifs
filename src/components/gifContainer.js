@@ -3,6 +3,8 @@ import GifList from "./gifList";
 import ToggleForm from "./toggleForm";
 import Search from "./search";
 import Favorites from "./favorites";
+import { Route, Link } from "react-router-dom";
+import Navigation from "./navigation";
 
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");
@@ -17,8 +19,7 @@ class GifContainer extends Component {
       gifsOn: false,
       searchResults: [],
       searchTerm: "",
-      favorites: [],
-      showFavorites: true
+      favorites: []
     };
   }
 
@@ -68,6 +69,18 @@ class GifContainer extends Component {
     this.setState({ [name]: event.target.checked });
   };
 
+  removeFavorite = index => event => {
+    console.log("index", index);
+    event.preventDefault();
+    const remove = this.state.favorites[index];
+    if (index >= 0) {
+      const newFav = this.state.favorites.filter(function(i) {
+        return i != remove;
+      });
+      this.setState({ favorites: newFav });
+    }
+  };
+
   componentDidUpdate(preProps, preState) {
     if (preState.searchTerm !== this.state.searchTerm) {
       this.setState({ searchResults: [] });
@@ -76,28 +89,34 @@ class GifContainer extends Component {
     }
   }
 
-  AddToFavorites = index => event => {
+  AddToFavorites = id => event => {
     event.preventDefault();
-    if (index) {
-      this.setState({
-        favorites: [
-          ...this.state.favorites,
-          {
-            id: this.state.gifs[index].id,
-            title: this.state.gifs[index].title,
-            original: this.state.gifs[index].images.original.url,
-            rating: this.state.gifs[index].rating,
-            import_datetime: this.state.gifs[index].import_datetime
-          }
-        ]
-      });
-    }
+    client.gifByID(`${id}`).then(res => {
+      console.log(res);
+      if (res.meta.status === 200) {
+        this.setState({
+          favorites: [
+            ...this.state.favorites,
+            {
+              id: res.data.id,
+              title: res.data.title,
+              original_still: res.data.images.original_still.url,
+              original: res.data.images.original.url,
+              rating: res.data.rating,
+              import_datetime: res.data.import_datetime
+            }
+          ]
+        });
+      }
+    });
   };
 
   render() {
     console.log("gif state", this.state);
+
     return (
       <div>
+        <Navigation />
         <ToggleForm
           handleChange={this.handleChange}
           gifsOn={this.state.gifsOn}
@@ -107,19 +126,40 @@ class GifContainer extends Component {
           handleSearch={this.handleSearch}
           searchForGif={this.searchForGif}
         />
-        <GifList
-          gifs={
-            this.state.searchResults.length > 0
-              ? this.state.searchResults
-              : this.state.gifs
-          }
-          gifsOn={this.state.gifsOn}
-          AddToFavorites={this.AddToFavorites}
+
+        <Route
+          exact
+          path="/favorites"
+          render={props => {
+            return (
+              <Favorites
+                {...props}
+                gifsOn={this.state.gifsOn}
+                favorites={this.state.favorites}
+                removeFavorite={this.removeFavorite}
+              />
+            );
+          }}
         />
-        {/* <Favorites
-          favorites={this.state.favorites}
-          AddToFavorites={this.AddToFavorites}
-        /> */}
+
+        <Route
+          exact
+          path="/"
+          render={props => {
+            return (
+              <GifList
+                {...props}
+                gifs={
+                  this.state.searchResults.length > 0
+                    ? this.state.searchResults
+                    : this.state.gifs
+                }
+                gifsOn={this.state.gifsOn}
+                AddToFavorites={this.AddToFavorites}
+              />
+            );
+          }}
+        />
       </div>
     );
   }
