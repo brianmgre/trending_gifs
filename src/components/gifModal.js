@@ -11,6 +11,9 @@ const GifModal = props => {
       <i className="material-icons" onClick={AddToFavorites(props.gif.id)}>
         favorite_border
       </i>
+      <i className="material-icons" onClick={close}>
+        close
+      </i>
       <DialogTitle onClick={close}>{props.gif.title}</DialogTitle>
       <DialogContent>
         <img src={props.gif.images.original.url} alt={props.gif.title} />

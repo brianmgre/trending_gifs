@@ -44,6 +44,7 @@ class GifContainer extends Component {
       });
   }
 
+  //search for gif
   searchForGif = event => {
     event.preventDefault();
     if (this.state.searchTerm !== "") {
@@ -66,10 +67,12 @@ class GifContainer extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  //turn gifs on/off
   handleChange = name => event => {
     this.setState({ [name]: event.target.checked });
   };
 
+  //removed favorite from favorite array
   removeFavorite = index => event => {
     event.preventDefault();
     const remove = this.state.favorites[index];
@@ -81,6 +84,7 @@ class GifContainer extends Component {
     }
   };
 
+  //sort array by import date
   sortArray = () => {
     const sortFunction = (a, b) => {
       if (!this.state.sorted) {
@@ -93,6 +97,7 @@ class GifContainer extends Component {
     this.setState({ gifs: sortedArray, sorted: !this.state.sorted });
   };
 
+  // clears search results when search is cleared and updates localstorage with favorites
   componentDidUpdate(preProps, preState) {
     if (preState.searchTerm !== this.state.searchTerm) {
       this.setState({ searchResults: [] });
@@ -101,6 +106,7 @@ class GifContainer extends Component {
     }
   }
 
+  //checks favorite array by id
   checkInFav = id => {
     function checkIfAlreadyAdded(fav) {
       return fav.id === id;
@@ -108,9 +114,9 @@ class GifContainer extends Component {
     return this.state.favorites.find(checkIfAlreadyAdded);
   };
 
+  //adds favorites to favorite array
   AddToFavorites = id => event => {
     event.preventDefault();
-
     if (this.checkInFav(id) === undefined) {
       client.gifByID(`${id}`).then(res => {
         if (res.meta.status === 200) {
@@ -142,13 +148,15 @@ class GifContainer extends Component {
           handleChange={this.handleChange}
           gifsOn={this.state.gifsOn}
         />
-        <button onClick={this.sortArray}>here</button>
+        <i className="material-icons" onClick={this.sortArray}>
+          sort
+        </i>
+        sort
         <Search
           searchTerm={this.state.searchTerm}
           handleSearch={this.handleSearch}
           searchForGif={this.searchForGif}
         />
-
         <Route
           exact
           path="/favorites"
@@ -163,7 +171,6 @@ class GifContainer extends Component {
             );
           }}
         />
-
         <Route
           exact
           path="/"
