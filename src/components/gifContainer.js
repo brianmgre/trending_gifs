@@ -9,7 +9,7 @@ import Navigation from "./navigation";
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");
 const client = GphApiClient(`${giphyApi}`);
-const gifLimit = 24;
+const gifLimit = 30;
 
 class GifContainer extends Component {
   constructor(props) {
@@ -19,7 +19,8 @@ class GifContainer extends Component {
       gifsOn: false,
       searchResults: [],
       searchTerm: "",
-      favorites: []
+      favorites: [],
+      sorted: false
     };
   }
 
@@ -70,7 +71,6 @@ class GifContainer extends Component {
   };
 
   removeFavorite = index => event => {
-    console.log("index", index);
     event.preventDefault();
     const remove = this.state.favorites[index];
     if (index >= 0) {
@@ -81,6 +81,18 @@ class GifContainer extends Component {
     }
   };
 
+  sortArray = () => {
+    const sortFunction = (a, b) => {
+      if (!this.state.sorted) {
+        return b.import_datetime - a.import_datetime;
+      } else {
+        return a.import_datetime - b.import_datetime;
+      }
+    };
+    const sortedArray = this.state.gifs.sort(sortFunction);
+    this.setState({ gifs: sortedArray, sorted: !this.state.sorted });
+  };
+
   componentDidUpdate(preProps, preState) {
     if (preState.searchTerm !== this.state.searchTerm) {
       this.setState({ searchResults: [] });
@@ -89,26 +101,35 @@ class GifContainer extends Component {
     }
   }
 
+  checkInFav = id => {
+    function checkIfAlreadyAdded(fav) {
+      return fav.id === id;
+    }
+    return this.state.favorites.find(checkIfAlreadyAdded);
+  };
+
   AddToFavorites = id => event => {
     event.preventDefault();
-    client.gifByID(`${id}`).then(res => {
-      console.log(res);
-      if (res.meta.status === 200) {
-        this.setState({
-          favorites: [
-            ...this.state.favorites,
-            {
-              id: res.data.id,
-              title: res.data.title,
-              original_still: res.data.images.original_still.url,
-              original: res.data.images.original.url,
-              rating: res.data.rating,
-              import_datetime: res.data.import_datetime
-            }
-          ]
-        });
-      }
-    });
+
+    if (this.checkInFav(id) === undefined) {
+      client.gifByID(`${id}`).then(res => {
+        if (res.meta.status === 200) {
+          this.setState({
+            favorites: [
+              ...this.state.favorites,
+              {
+                id: res.data.id,
+                title: res.data.title,
+                original_still: res.data.images.original_still.url,
+                original: res.data.images.original.url,
+                rating: res.data.rating,
+                import_datetime: res.data.import_datetime
+              }
+            ]
+          });
+        }
+      });
+    }
   };
 
   render() {
@@ -121,6 +142,7 @@ class GifContainer extends Component {
           handleChange={this.handleChange}
           gifsOn={this.state.gifsOn}
         />
+        <button onClick={this.sortArray}>here</button>
         <Search
           searchTerm={this.state.searchTerm}
           handleSearch={this.handleSearch}
