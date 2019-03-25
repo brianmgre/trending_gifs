@@ -1,35 +1,31 @@
-import React, { Component } from "react";
-import GifList from "./gifList";
+import React from "react";
+import { GridList, GridListTile } from "@material-ui/core";
 
-class Favorites extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      favGif: []
-    };
-  }
+const Favorites = props => {
+  console.log("wtf", props);
 
-  componentDidMount() {
-    if (localStorage.getItem("favorites")) {
-      const storedFav = JSON.parse(localStorage["favorites"]);
-      this.setState({ favGif: storedFav });
-    }
-  }
+  const favs = (
+    <GridList cellHeight={300} cols={3}>
+      {props.favorites.map((fav, index) => (
+        <GridListTile key={index}>
+          <i className="material-icons" onClick={props.removeFavorite(index)}>
+            delete_outline
+          </i>
+          <img
+            src={props.gifsOn ? fav.original : fav.original_still}
+            alt={fav.title}
+          />
+        </GridListTile>
+      ))}
+    </GridList>
+  );
 
-  render() {
-    if (this.state.favGif.length === 0) {
-      return <h1>loading!</h1>;
-    }
-    console.log(this.state);
-    return (
-      <div>
-        Your Favorite Gifs!
-        {this.state.favGif.map((fav, index) => (
-          <div key={index}>hi</div>
-        ))}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      Your Favorite Gifs!
+      {favs}
+    </div>
+  );
+};
 
 export default Favorites;

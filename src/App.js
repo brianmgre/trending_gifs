@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import Routes from "./components/routes";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import GifContainer from "./components/gifContainer";
 
 const theme = createMuiTheme({
   typography: {
@@ -22,7 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Routes />
+        <GifContainer />
       </div>
     );
   }
