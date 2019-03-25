@@ -5,6 +5,7 @@ import Search from "./search";
 import Favorites from "./favorites";
 import { Route, Link } from "react-router-dom";
 import Navigation from "./navigation";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");
@@ -20,7 +21,8 @@ class GifContainer extends Component {
       searchResults: [],
       searchTerm: "",
       favorites: [],
-      sorted: false
+      sorted: false,
+      hasMore: true
     };
   }
 
@@ -43,6 +45,26 @@ class GifContainer extends Component {
         console.log(err, "error");
       });
   }
+
+  fetchMoreData = () => {
+    if (this.state.gifs.length >= 100) {
+      this.setState({ hasMore: false });
+      return;
+    }
+
+    setTimeout(() => {
+      client
+        .trending("gifs", { limit: this.state.gifs.length + 35 })
+        .then(res => {
+          if (res.meta.status === 200) {
+            this.setState({ gifs: res.data });
+          }
+        })
+        .catch(err => {
+          console.log(err, "error");
+        });
+    }, 500);
+  };
 
   //search for gif
   searchForGif = event => {
@@ -157,38 +179,46 @@ class GifContainer extends Component {
           handleSearch={this.handleSearch}
           searchForGif={this.searchForGif}
         />
-        <Route
-          exact
-          path="/favorites"
-          render={props => {
-            return (
-              <Favorites
-                {...props}
-                gifsOn={this.state.gifsOn}
-                favorites={this.state.favorites}
-                removeFavorite={this.removeFavorite}
-              />
-            );
-          }}
-        />
-        <Route
-          exact
-          path="/"
-          render={props => {
-            return (
-              <GifList
-                {...props}
-                gifs={
-                  this.state.searchResults.length > 0
-                    ? this.state.searchResults
-                    : this.state.gifs
-                }
-                gifsOn={this.state.gifsOn}
-                AddToFavorites={this.AddToFavorites}
-              />
-            );
-          }}
-        />
+        <InfiniteScroll
+          dataLength={this.state.gifs.length}
+          next={this.fetchMoreData}
+          hasMore={this.state.hasMore}
+          loader={<p>loading...</p>}
+          endMessage={<p>you're at the end</p>}
+        >
+          <Route
+            exact
+            path="/favorites"
+            render={props => {
+              return (
+                <Favorites
+                  {...props}
+                  gifsOn={this.state.gifsOn}
+                  favorites={this.state.favorites}
+                  removeFavorite={this.removeFavorite}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/"
+            render={props => {
+              return (
+                <GifList
+                  {...props}
+                  gifs={
+                    this.state.searchResults.length > 0
+                      ? this.state.searchResults
+                      : this.state.gifs
+                  }
+                  gifsOn={this.state.gifsOn}
+                  AddToFavorites={this.AddToFavorites}
+                />
+              );
+            }}
+          />
+        </InfiniteScroll>
       </div>
     );
   }
