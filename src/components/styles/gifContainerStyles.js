@@ -27,7 +27,13 @@ export const styles = theme => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing.unit * 5,
+      flexDirection: "Column",
+      alignItems: "center"
+    }
   },
 
   sort: {
@@ -36,6 +42,9 @@ export const styles = theme => ({
     flexDirection: "column",
     "&:hover": {
       cursor: "pointer"
+    },
+    [theme.breakpoints.down("xs")]: {
+      paddingBottom: 20
     }
   },
 

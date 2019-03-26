@@ -28,7 +28,6 @@ class Gif extends Component {
           open={this.state.open}
           close={this.close}
           gif={this.props.gif}
-          index={this.props.index}
           checkInFav={this.props.checkInFav}
         />
         {this.props.gifsOn ? (

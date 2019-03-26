@@ -8,7 +8,7 @@ const GifList = props => {
   const { classes } = props;
   return (
     <Grid container spacing={8} className={classes.root}>
-      {props.gifs.map((gif, index) => (
+      {props.gifs.map(gif => (
         <Grid item lg={2} xs={6} md={2} sm={3} key={gif.id}>
           <Gif
             gif={gif}
