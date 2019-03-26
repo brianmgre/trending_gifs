@@ -24,11 +24,11 @@ Extremely easy to setup, maintain, and provides continuous deployment.
 <h2>Using the Application:</h2>
 
 <ol>
-<li>Package manager: `Npm` was used to build this project. </li>
+<li>Package manager: Npm was used to build this project. </li>
 <li>Fork and clone repo</li>
-<li>Add a `.env` file at the root of each folder (same level as package.json). Add environment variables.</li>
-<li>Run `npm install` to install the necessary node_modules</li>
-<li>Once completed run `npm start` to start the application. </li>
+<li>Add a .env file at the root of each folder (same level as package.json). Add environment variables.</li>
+<li>Run npm install to install the necessary node_modules</li>
+<li>Once completed run npm start to start the application. </li>
   </ol>
   
 
