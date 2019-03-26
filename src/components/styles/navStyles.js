@@ -24,7 +24,6 @@ export const styles = theme => ({
   },
 
   hidden: {
-    // display: "none"
     visibility: "hidden"
   },
 

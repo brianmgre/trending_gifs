@@ -11,6 +11,9 @@ export const styles = theme => ({
   searchIcon: {
     "&:hover": {
       cursor: "pointer"
+    },
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: 15
     }
   },
 
@@ -21,7 +24,8 @@ export const styles = theme => ({
     borderRadius: "25px",
     padding: "10px 10px",
     [theme.breakpoints.down("xs")]: {
-      fontSize: "2rem"
+      fontSize: "2rem",
+      paddingTop: 15
     }
   }
 });

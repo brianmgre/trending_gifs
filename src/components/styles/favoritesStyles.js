@@ -21,6 +21,9 @@ export const styles = theme => ({
     textAlign: "center",
     margin: "30px 0",
     fontWeight: "bold",
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
+    [theme.breakpoints.down("sm")]: {
+      margin: "15px 0"
+    }
   }
 });

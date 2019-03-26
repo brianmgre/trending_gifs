@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 import GifList from "./gifList";
-import ToggleForm from "./toggleForm";
-import Search from "./search";
 import Favorites from "./favorites";
 import { Route } from "react-router-dom";
-import Navigation from "./navigation";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { styles } from "./styles/gifContainerStyles";
-import Typography from "@material-ui/core/Typography";
+import Header from "./header";
+import SearchAndSort from "./searchAndSort";
 
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");
@@ -174,41 +170,16 @@ class GifContainer extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appBar}>
-          <Toolbar className={classes.toolbar}>
-            <Navigation />
-            <Typography variant="h2" className={classes.logo}>
-              Gifs on Gifs
-            </Typography>
-            <ToggleForm
-              handleChange={this.handleChange}
-              gifsOn={this.state.gifsOn}
-            />
-          </Toolbar>
-        </AppBar>
+        <Header handleChange={this.handleChange} gifsOn={this.state.gifsOn} />
 
-        <div className={classes.searchSort}>
-          <div className={classes.sort}>
-            <i
-              className="material-icons"
-              onClick={this.sortArray}
-              style={{ fontSize: 40, color: "#00AAE7" }}
-            >
-              sort
-            </i>
-            <Typography variant="h5" className={classes.sortLabel}>
-              {this.state.sorted ? "Newest->Oldest" : "Oldest->Newest"}
-            </Typography>
-          </div>
-
-          <Search
-            searchTerm={this.state.searchTerm}
-            handleSearch={this.handleSearch}
-            searchForGif={this.searchForGif}
-            clearSearch={this.clearSearch}
-          />
-        </div>
-
+        <SearchAndSort
+          sorted={this.state.sorted}
+          searchTerm={this.state.searchTerm}
+          handleSearch={this.handleSearch}
+          searchForGif={this.searchForGif}
+          clearSearch={this.clearSearch}
+          sortArray={this.sortArray}
+        />
         <InfiniteScroll
           className={classes.infiniteScoll}
           style={{ overflow: "hidden" }}

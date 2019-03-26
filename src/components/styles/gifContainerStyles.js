@@ -32,7 +32,7 @@ export const styles = theme => ({
     justifyContent: "space-between",
 
     [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing.unit * 5,
+      padding: "20px",
       flexDirection: "Column",
       alignItems: "center"
     }
