@@ -220,7 +220,6 @@ class GifContainer extends Component {
               <br />
             </div>
           }
-          // endMessage={<Footer />}
         >
           <Route
             exact
