@@ -1,6 +1,8 @@
 export const styles = theme => ({
   root: {
-    width: "100%"
+    maxWidth: 1030,
+    margin: "auto",
+    minHeight: "100vh"
   },
   appBar: {
     backgroundColor: theme.palette.primary.main,
@@ -44,7 +46,7 @@ export const styles = theme => ({
       cursor: "pointer"
     },
     [theme.breakpoints.down("xs")]: {
-      paddingBottom: 20
+      display: "none"
     }
   },
 

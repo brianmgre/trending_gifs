@@ -19,6 +19,9 @@ export const styles = theme => ({
     fontSize: "1.6rem",
     border: "1px solid theme.palette.primary.main",
     borderRadius: "25px",
-    padding: "10px 10px"
+    padding: "10px 10px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "2rem"
+    }
   }
 });

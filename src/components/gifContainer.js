@@ -12,6 +12,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { styles } from "./styles/gifContainerStyles";
 import Typography from "@material-ui/core/Typography";
+import Footer from "./footer";
 
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");
@@ -192,8 +193,8 @@ class GifContainer extends Component {
             >
               sort
             </i>
-            <Typography variant="h2" className={classes.sortLabel}>
-              sort
+            <Typography variant="h5" className={classes.sortLabel}>
+              {this.state.sorted ? "Newest->Oldest" : "Oldest->Newest"}
             </Typography>
           </div>
 
@@ -219,6 +220,7 @@ class GifContainer extends Component {
               <br />
             </div>
           }
+          // endMessage={<Footer />}
         >
           <Route
             exact

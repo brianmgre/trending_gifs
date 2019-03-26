@@ -3,6 +3,7 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import GifContainer from "./components/gifContainer";
 import { styles } from "./AppStyle";
 import withStyles from "@material-ui/core/styles/withStyles";
+import Footer from "./components/footer";
 
 const theme = createMuiTheme({
   typography: {
@@ -26,6 +27,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <div className={classes.root}>
           <GifContainer />
+          <Footer />
         </div>
       </MuiThemeProvider>
     );
