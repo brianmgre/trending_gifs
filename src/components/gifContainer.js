@@ -6,6 +6,12 @@ import Favorites from "./favorites";
 import { Route, Link } from "react-router-dom";
 import Navigation from "./navigation";
 import InfiniteScroll from "react-infinite-scroll-component";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import withStyles from "@material-ui/core/styles/withStyles";
+import { styles } from "./styles/gifContainerStyles";
+import Typography from "@material-ui/core/Typography";
 
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");
@@ -46,15 +52,16 @@ class GifContainer extends Component {
       });
   }
 
+  //load more data
   fetchMoreData = () => {
-    if (this.state.gifs.length >= 100) {
+    if (this.state.gifs.length >= 130) {
       this.setState({ hasMore: false });
       return;
     }
 
     setTimeout(() => {
       client
-        .trending("gifs", { limit: this.state.gifs.length + 35 })
+        .trending("gifs", { limit: this.state.gifs.length + gifLimit })
         .then(res => {
           if (res.meta.status === 200) {
             this.setState({ gifs: res.data });
@@ -63,7 +70,7 @@ class GifContainer extends Component {
         .catch(err => {
           console.log(err, "error");
         });
-    }, 500);
+    }, 700);
   };
 
   //search for gif
@@ -161,45 +168,54 @@ class GifContainer extends Component {
   };
 
   render() {
-    console.log("gif state", this.state);
-
+    const { classes } = this.props;
     return (
-      <div>
-        <Navigation />
-        <ToggleForm
-          handleChange={this.handleChange}
-          gifsOn={this.state.gifsOn}
-        />
-        <i className="material-icons" onClick={this.sortArray}>
-          sort
-        </i>
-        sort
-        <Search
-          searchTerm={this.state.searchTerm}
-          handleSearch={this.handleSearch}
-          searchForGif={this.searchForGif}
-        />
+      <div className={classes.root}>
+        <AppBar className={classes.appBar}>
+          <Toolbar className={classes.toolbar}>
+            <Navigation />
+
+            <Typography variant="display3" className={classes.logo}>
+              Gifs on Gifs
+            </Typography>
+
+            <ToggleForm
+              handleChange={this.handleChange}
+              gifsOn={this.state.gifsOn}
+            />
+          </Toolbar>
+        </AppBar>
+        <div className={classes.searchSort}>
+          <Search
+            searchTerm={this.state.searchTerm}
+            handleSearch={this.handleSearch}
+            searchForGif={this.searchForGif}
+          />
+          <div className={classes.sort}>
+            <i
+              className="material-icons"
+              onClick={this.sortArray}
+              style={{ fontSize: 40, color: "#00AAE7" }}
+            >
+              sort
+            </i>
+            sort
+          </div>
+        </div>
         <InfiniteScroll
           dataLength={this.state.gifs.length}
           next={this.fetchMoreData}
           hasMore={this.state.hasMore}
-          loader={<p>loading...</p>}
-          endMessage={<p>you're at the end</p>}
+          loader={
+            <div>
+              <br />
+              <LinearProgress />
+              <br />
+              <LinearProgress />
+              <br />
+            </div>
+          }
         >
-          <Route
-            exact
-            path="/favorites"
-            render={props => {
-              return (
-                <Favorites
-                  {...props}
-                  gifsOn={this.state.gifsOn}
-                  favorites={this.state.favorites}
-                  removeFavorite={this.removeFavorite}
-                />
-              );
-            }}
-          />
           <Route
             exact
             path="/"
@@ -218,10 +234,24 @@ class GifContainer extends Component {
               );
             }}
           />
+          <Route
+            exact
+            path="/favorites"
+            render={props => {
+              return (
+                <Favorites
+                  {...props}
+                  gifsOn={this.state.gifsOn}
+                  favorites={this.state.favorites}
+                  removeFavorite={this.removeFavorite}
+                />
+              );
+            }}
+          />
         </InfiniteScroll>
       </div>
     );
   }
 }
 
-export default GifContainer;
+export default withStyles(styles)(GifContainer);

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import "./App.css";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import GifContainer from "./components/gifContainer";
+import { styles } from "./AppStyle";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 const theme = createMuiTheme({
   typography: {
@@ -9,23 +10,26 @@ const theme = createMuiTheme({
   },
   palette: {
     secondary: {
-      main: "#3A54B4"
+      main: "#E1C62C"
     },
 
     primary: {
-      main: "#fef7ed"
+      main: "#00AAE7"
     }
   }
 });
 
 class App extends Component {
   render() {
+    const { classes } = this.props;
     return (
-      <div className="App">
-        <GifContainer />
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <div className={classes.root}>
+          <GifContainer />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);

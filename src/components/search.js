@@ -1,26 +1,43 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
+import { styles } from "./styles/searchStyle";
+import withStyles from "@material-ui/core/styles/withStyles";
+import Typography from "@material-ui/core/Typography";
 
 const Search = props => {
+  const { classes } = props;
   return (
-    <div>
-      <form onSubmit={props.searchForGif}>
+    <div className={classes.root}>
+      <form onSubmit={props.searchForGif} className={classes.searchForm}>
         <TextField
           placeholder="Search..."
           name="searchTerm"
           type="text"
           value={props.searchTerm}
           onChange={props.handleSearch}
+          className={classes.searchInput}
+          InputProps={{
+            classes: {
+              input: classes.resize
+            }
+          }}
         />
-        <i
-          className="material-icons"
-          type="submit"
-          onClick={props.searchForGif}
-        >
-          search
-        </i>
+        <div className={classes.searchIcon}>
+          <i
+            className="material-icons"
+            type="submit"
+            onClick={props.searchForGif}
+            style={{
+              fontSize: 30,
+              color: "#00AAE7",
+              marginLeft: 10
+            }}
+          >
+            search
+          </i>
+        </div>
       </form>
     </div>
   );
 };
-export default Search;
+export default withStyles(styles)(Search);
