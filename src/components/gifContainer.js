@@ -143,9 +143,9 @@ class GifContainer extends Component {
   };
 
   //adds favorites to favorite array
-  AddToFavorites = id => event => {
+  addToFavorites = id => event => {
     event.preventDefault();
-    if (this.checkInFav(id) === undefined) {
+    if (!this.checkInFav(id)) {
       client.gifByID(`${id}`).then(res => {
         if (res.meta.status === 200) {
           this.setState({
@@ -248,7 +248,8 @@ class GifContainer extends Component {
                       : this.state.gifs
                   }
                   gifsOn={this.state.gifsOn}
-                  AddToFavorites={this.AddToFavorites}
+                  addToFavorites={this.addToFavorites}
+                  checkInFav={this.checkInFav}
                 />
               );
             }}

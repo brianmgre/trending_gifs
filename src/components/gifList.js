@@ -13,7 +13,8 @@ const GifList = props => {
           <Gif
             gif={gif}
             gifsOn={props.gifsOn}
-            AddToFavorites={props.AddToFavorites}
+            addToFavorites={props.addToFavorites}
+            checkInFav={props.checkInFav}
           />
         </Grid>
       ))}

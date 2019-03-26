@@ -24,11 +24,12 @@ class Gif extends Component {
     return (
       <div className={classes.imgContainer}>
         <GifModal
-          AddToFavorites={this.props.AddToFavorites}
+          addToFavorites={this.props.addToFavorites}
           open={this.state.open}
           close={this.close}
           gif={this.props.gif}
           index={this.props.index}
+          checkInFav={this.props.checkInFav}
         />
         {this.props.gifsOn ? (
           <img

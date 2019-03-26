@@ -16,14 +16,15 @@ import {
 } from "react-share";
 
 const GifModal = props => {
-  const { classes, close, AddToFavorites, ...other } = props;
+  const { classes, close, checkInFav, addToFavorites, ...other } = props;
 
   return (
     <Dialog {...other} className={classes.root}>
       <div className={classes.likeCancelIcons}>
         <i
           className="material-icons"
-          onClick={AddToFavorites(props.gif.id)}
+          id={checkInFav(props.gif.id) ? "liked" : "notLiked"}
+          onClick={addToFavorites(props.gif.id)}
           style={{
             fontSize: 40
           }}
