@@ -12,7 +12,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { styles } from "./styles/gifContainerStyles";
 import Typography from "@material-ui/core/Typography";
-import Footer from "./footer";
 
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");
@@ -135,6 +134,10 @@ class GifContainer extends Component {
     }
   }
 
+  clearSearch = () => {
+    this.setState({ searchTerm: "" });
+  };
+
   //checks favorite array by id
   checkInFav = id => {
     function checkIfAlreadyAdded(fav) {
@@ -202,6 +205,7 @@ class GifContainer extends Component {
             searchTerm={this.state.searchTerm}
             handleSearch={this.handleSearch}
             searchForGif={this.searchForGif}
+            clearSearch={this.clearSearch}
           />
         </div>
 

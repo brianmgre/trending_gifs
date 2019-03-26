@@ -34,6 +34,16 @@ const Search = props => {
           >
             search
           </i>
+          <i
+            className="material-icons"
+            onClick={props.clearSearch}
+            style={{
+              fontSize: 30,
+              color: "#00AAE7"
+            }}
+          >
+            close
+          </i>
         </div>
       </form>
     </div>
