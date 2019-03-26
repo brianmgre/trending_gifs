@@ -20,7 +20,10 @@ export const styles = theme => ({
 
   logo: {
     color: "white",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    "&:hover": {
+      cursor: "pointer"
+    }
   },
 
   searchSort: {

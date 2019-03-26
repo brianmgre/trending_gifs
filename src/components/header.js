@@ -9,11 +9,15 @@ import ToggleForm from "./toggleForm";
 
 const Header = props => {
   const { classes } = props;
+
+  const scroll = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <AppBar className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <Navigation />
-        <Typography variant="h2" className={classes.logo}>
+        <Typography variant="h2" className={classes.logo} onClick={scroll}>
           Gifs on Gifs
         </Typography>
         <ToggleForm handleChange={props.handleChange} gifsOn={props.gifsOn} />

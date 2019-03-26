@@ -112,20 +112,28 @@ class GifContainer extends Component {
   sortArray = () => {
     const sortFunction = (a, b) => {
       if (!this.state.sorted) {
-        return b.import_datetime - a.import_datetime;
+        return new Date(b.import_datetime) - new Date(a.import_datetime);
       } else {
-        return a.import_datetime - b.import_datetime;
+        return new Date(a.import_datetime) - new Date(b.import_datetime);
       }
     };
-    const sortedArray = this.state.gifs.sort(sortFunction);
-    this.setState({ gifs: sortedArray, sorted: !this.state.sorted });
+
+    let arrayToggle = null;
+    if (window.location.pathname === "/favorites") {
+      arrayToggle = this.state.favorites;
+    } else {
+      arrayToggle = this.state.gifs;
+    }
+
+    const sortedArray = arrayToggle.sort(sortFunction);
+    this.setState({ arrayToggle: sortedArray, sorted: !this.state.sorted });
   };
 
   // clears search results when search is cleared and updates localstorage with favorites
   componentDidUpdate(preProps, preState) {
     if (preState.searchTerm !== this.state.searchTerm) {
       this.setState({ searchResults: [] });
-    } else if (preState.favorites !== this.state.favorites) {
+    } else if (preState.favorites.length !== this.state.favorites.length) {
       localStorage["favorites"] = JSON.stringify(this.state.favorites);
     }
   }
@@ -171,7 +179,6 @@ class GifContainer extends Component {
     return (
       <div className={classes.root}>
         <Header handleChange={this.handleChange} gifsOn={this.state.gifsOn} />
-
         <SearchAndSort
           sorted={this.state.sorted}
           searchTerm={this.state.searchTerm}
@@ -210,7 +217,6 @@ class GifContainer extends Component {
               );
             }}
           />
-
           <Route
             exact
             path="/"
