@@ -60,7 +60,8 @@ export const styles = theme => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    fontSize: "1.6rem"
+    fontSize: "1.6rem",
+    marginTop: 5
   },
 
   userAvater: {
