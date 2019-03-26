@@ -39,6 +39,9 @@ export const styles = theme => ({
       padding: "20px",
       flexDirection: "Column",
       alignItems: "center"
+    },
+    [theme.breakpoints.down("md")]: {
+      padding: "20px"
     }
   },
 

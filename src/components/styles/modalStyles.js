@@ -19,7 +19,11 @@ export const styles = theme => ({
   modalImage: {
     maxHeight: "480px",
     paddingTop: 6,
-    paddingBottom: 6
+    paddingBottom: 6,
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      height: "100px"
+    }
   },
 
   titleImage: {

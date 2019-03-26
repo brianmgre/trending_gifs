@@ -5,7 +5,10 @@ export const styles = theme => ({
 
   searchForm: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: 15
+    }
   },
 
   searchIcon: {
