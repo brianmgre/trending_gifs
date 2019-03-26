@@ -50,5 +50,20 @@ export const styles = theme => ({
 
   rating: {
     fontSize: "1.6rem"
+  },
+
+  hidden: {
+    display: "none"
+  },
+
+  avatar: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    fontSize: "1.6rem"
+  },
+
+  userAvater: {
+    marginRight: "10px"
   }
 });

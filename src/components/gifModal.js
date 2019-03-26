@@ -1,7 +1,7 @@
 import React from "react";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
-import { DialogContent, Typography } from "@material-ui/core";
+import { DialogContent, Typography, Avatar } from "@material-ui/core";
 import "./styles/modal.css";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { styles } from "./styles/modalStyles";
@@ -31,6 +31,14 @@ const GifModal = props => {
         >
           favorite_border
         </i>
+        <div className={props.gif.user ? classes.avatar : classes.hidden}>
+          <Avatar className={classes.userAvater}>
+            <img
+              src={props.gif.user ? props.gif.user.avatar_url : props.gif.title}
+            />
+          </Avatar>
+          {props.gif.user ? props.gif.user.username : props.gif.title}
+        </div>
         <i
           className="material-icons"
           onClick={close}
@@ -41,6 +49,7 @@ const GifModal = props => {
           close
         </i>
       </div>
+
       <div className={classes.titleImage}>
         <DialogTitle onClick={close} className={classes.gifTitle}>
           <Typography className={classes.gifTitle}>

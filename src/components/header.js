@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Navigation from "./navigation";
 import Typography from "@material-ui/core/Typography";
 import ToggleForm from "./toggleForm";
+import { Link } from "react-router-dom";
 
 const Header = props => {
   const { classes } = props;
@@ -17,9 +18,11 @@ const Header = props => {
     <AppBar className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <Navigation />
-        <Typography variant="h2" className={classes.logo} onClick={scroll}>
-          Gifs on Gifs
-        </Typography>
+        <Link to="/" className={classes.logo}>
+          <Typography variant="h2" className={classes.logo} onClick={scroll}>
+            Gifs on Gifs
+          </Typography>
+        </Link>
         <ToggleForm handleChange={props.handleChange} gifsOn={props.gifsOn} />
       </Toolbar>
     </AppBar>

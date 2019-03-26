@@ -23,7 +23,8 @@ export const styles = theme => ({
     fontWeight: "bold",
     "&:hover": {
       cursor: "pointer"
-    }
+    },
+    textDecoration: "none"
   },
 
   searchSort: {
