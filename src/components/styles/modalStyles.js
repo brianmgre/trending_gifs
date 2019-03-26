@@ -29,7 +29,10 @@ export const styles = theme => ({
   },
   shareIcons: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    "&:hover": {
+      cursor: "pointer"
+    }
   },
 
   gifTitle: {
