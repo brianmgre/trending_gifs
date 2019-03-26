@@ -2,7 +2,6 @@ import React from "react";
 import { TextField } from "@material-ui/core";
 import { styles } from "./styles/searchStyle";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Typography from "@material-ui/core/Typography";
 
 const Search = props => {
   const { classes } = props;

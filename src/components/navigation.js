@@ -40,12 +40,20 @@ class Navigation extends Component {
           </div>
           <List className={classes.navLinks}>
             <NavLink to="/" className={classes.navLink}>
-              <Typography variant="display2" className={classes.navText}>
+              <Typography
+                variant="h2"
+                className={classes.navText}
+                onClick={this.handleMenu}
+              >
                 Home
               </Typography>
             </NavLink>
             <NavLink to="/favorites" className={classes.navLink}>
-              <Typography variant="display2" className={classes.navText}>
+              <Typography
+                variant="h2"
+                className={classes.navText}
+                onClick={this.handleMenu}
+              >
                 Favorites
               </Typography>
             </NavLink>

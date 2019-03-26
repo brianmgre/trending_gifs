@@ -1,6 +1,6 @@
 export const styles = theme => ({
   root: {
-    maxWidth: 1024,
+    maxWidth: 1030,
     margin: "auto"
   }
 });

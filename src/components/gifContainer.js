@@ -3,7 +3,7 @@ import GifList from "./gifList";
 import ToggleForm from "./toggleForm";
 import Search from "./search";
 import Favorites from "./favorites";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Navigation from "./navigation";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -36,7 +36,6 @@ class GifContainer extends Component {
     client
       .trending("gifs", { limit: gifLimit })
       .then(res => {
-        console.log("response", res);
         if (res.meta.status === 200) {
           this.setState({ gifs: res.data });
         }
@@ -107,7 +106,7 @@ class GifContainer extends Component {
     const remove = this.state.favorites[index];
     if (index >= 0) {
       const newFav = this.state.favorites.filter(function(i) {
-        return i != remove;
+        return i !== remove;
       });
       this.setState({ favorites: newFav });
     }
@@ -174,23 +173,17 @@ class GifContainer extends Component {
         <AppBar className={classes.appBar}>
           <Toolbar className={classes.toolbar}>
             <Navigation />
-
-            <Typography variant="display3" className={classes.logo}>
+            <Typography variant="h2" className={classes.logo}>
               Gifs on Gifs
             </Typography>
-
             <ToggleForm
               handleChange={this.handleChange}
               gifsOn={this.state.gifsOn}
             />
           </Toolbar>
         </AppBar>
+
         <div className={classes.searchSort}>
-          <Search
-            searchTerm={this.state.searchTerm}
-            handleSearch={this.handleSearch}
-            searchForGif={this.searchForGif}
-          />
           <div className={classes.sort}>
             <i
               className="material-icons"
@@ -199,10 +192,21 @@ class GifContainer extends Component {
             >
               sort
             </i>
-            sort
+            <Typography variant="h2" className={classes.sortLabel}>
+              sort
+            </Typography>
           </div>
+
+          <Search
+            searchTerm={this.state.searchTerm}
+            handleSearch={this.handleSearch}
+            searchForGif={this.searchForGif}
+          />
         </div>
+
         <InfiniteScroll
+          className={classes.infiniteScoll}
+          style={{ overflow: "hidden" }}
           dataLength={this.state.gifs.length}
           next={this.fetchMoreData}
           hasMore={this.state.hasMore}
@@ -218,6 +222,21 @@ class GifContainer extends Component {
         >
           <Route
             exact
+            path="/favorites"
+            render={props => {
+              return (
+                <Favorites
+                  {...props}
+                  gifsOn={this.state.gifsOn}
+                  favorites={this.state.favorites}
+                  removeFavorite={this.removeFavorite}
+                />
+              );
+            }}
+          />
+
+          <Route
+            exact
             path="/"
             render={props => {
               return (
@@ -230,20 +249,6 @@ class GifContainer extends Component {
                   }
                   gifsOn={this.state.gifsOn}
                   AddToFavorites={this.AddToFavorites}
-                />
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/favorites"
-            render={props => {
-              return (
-                <Favorites
-                  {...props}
-                  gifsOn={this.state.gifsOn}
-                  favorites={this.state.favorites}
-                  removeFavorite={this.removeFavorite}
                 />
               );
             }}

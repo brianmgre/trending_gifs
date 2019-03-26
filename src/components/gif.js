@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import GifModal from "./gifModal";
+import { styles } from "./styles/gifStyles";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 class Gif extends Component {
   constructor(props) {
@@ -18,8 +20,9 @@ class Gif extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.imgContainer}>
         <GifModal
           AddToFavorites={this.props.AddToFavorites}
           open={this.state.open}
@@ -32,12 +35,14 @@ class Gif extends Component {
             src={this.props.gif.images.fixed_width.url}
             alt={this.props.gif.title}
             onClick={this.open}
+            className={classes.gifImage}
           />
         ) : (
           <img
-            src={this.props.gif.images.fixed_width_still.url}
+            src={this.props.gif.images.fixed_height_still.url}
             alt={this.props.gif.title}
             onClick={this.open}
+            className={classes.gifImage}
           />
         )}
       </div>
@@ -45,4 +50,4 @@ class Gif extends Component {
   }
 }
 
-export default Gif;
+export default withStyles(styles)(Gif);

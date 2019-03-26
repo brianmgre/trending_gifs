@@ -37,5 +37,9 @@ export const styles = theme => ({
     "&:hover": {
       cursor: "pointer"
     }
+  },
+
+  sortLabel: {
+    color: theme.palette.primary.main
   }
 });
