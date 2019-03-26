@@ -1,7 +1,7 @@
 import React from "react";
 import Gif from "./gif";
 import Grid from "@material-ui/core/Grid";
-import { styles } from "./styles/gifStyles";
+import { styles } from "../styles/gifStyles";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const GifList = props => {

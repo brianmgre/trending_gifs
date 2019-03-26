@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
-import { styles } from "./styles/searchStyle";
+import { styles } from "../styles/searchStyle";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const Search = props => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { styles } from "./styles/gifContainerStyles";
+import { styles } from "../styles/gifContainerStyles";
 import withStyles from "@material-ui/core/styles/withStyles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";

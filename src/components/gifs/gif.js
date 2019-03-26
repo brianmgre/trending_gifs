@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import GifModal from "./gifModal";
-import { styles } from "./styles/gifStyles";
+import GifModal from "../modal/gifModal";
+import { styles } from "../styles/gifStyles";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 class Gif extends Component {

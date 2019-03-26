@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import GifList from "./gifList";
-import Favorites from "./favorites";
+import GifList from "./gifs/gifList";
+import Favorites from "./favorites/favorites";
 import { Route } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { styles } from "./styles/gifContainerStyles";
-import Header from "./header";
-import SearchAndSort from "./searchAndSort";
+import Header from "./header/header";
+import SearchAndSort from "./header/searchAndSort";
 
 const giphyApi = process.env.REACT_APP_API;
 const GphApiClient = require("giphy-js-sdk-core");

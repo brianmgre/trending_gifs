@@ -2,9 +2,9 @@ import React from "react";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import { DialogContent, Typography, Avatar } from "@material-ui/core";
-import "./styles/modal.css";
+import "../styles/modal.css";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { styles } from "./styles/modalStyles";
+import { styles } from "../styles/modalStyles";
 import SocialShareIcons from "./socialShareIcons";
 
 const GifModal = props => {

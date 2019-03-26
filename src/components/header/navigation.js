@@ -5,7 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import List from "@material-ui/core/List";
-import { styles } from "./styles/navStyles";
+import { styles } from "../styles/navStyles";
 
 class Navigation extends Component {
   constructor(props) {

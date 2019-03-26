@@ -1,6 +1,6 @@
 import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { styles } from "./styles/modalStyles";
+import { styles } from "../styles/modalStyles";
 import { Typography } from "@material-ui/core";
 import {
   FacebookIcon,

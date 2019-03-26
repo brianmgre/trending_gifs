@@ -1,5 +1,5 @@
 import React from "react";
-import { styles } from "./styles/gifContainerStyles";
+import { styles } from "../styles/gifContainerStyles";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 import Search from "./search";

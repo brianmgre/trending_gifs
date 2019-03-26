@@ -2,7 +2,7 @@ import React from "react";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-import { styles } from "./styles/toggleStyles";
+import { styles } from "../styles/toggleStyles";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const ToggleForm = props => {
