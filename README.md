@@ -1,50 +1,35 @@
-# Take-home exercise for frontend interviews at Eaze
+<h1>Gifs on Gifs<h1>
 
-Frontend coding challenge.
+<h2>Tech Used</h2>
 
-## Project
+<li>React</li>
+<li>Material-UI</li>
+<li>Netlify</li>
+<li>Giphy SDK</li>
 
-We would like you to build a web app that displays the trending GIFs on [Giphy](https://giphy.com/).
-Users visiting the website should be able to search for GIFs and see a list of results. The user should be able to expand a GIF and see its details (username, rating, anything you think could be relevant).
+<h2>React:</h2>
+Enhances the user experience with increased speed with the virtual DOM, and is easy to maintain with its component structure. 
 
-Users should have a good user experience on desktop, tablet and mobile devices.
+<h2>Material-UI:</h2>
+Material-UI allowed for all components to be uniform across the entire application. Material-UI has an extremely large component library, is well documented, and is well suited to handle hundreds of gifs.
 
-This project is pretty open ended in order to leave you some freedom to improve upon the base by focusing on what you like the most.
-
-We strongly encourage you to pick a couple of optional improvements. The following are just some ideas, so if none of these interest you, feel free to do something that isn’t on this list:
-
-- When the user scrolls the page to the bottom, load new GIFs automatically.
-- Create a mosaic layout and display a placeholder when GIFs are still loading.
-- Show off your animation skills!
-- Sort the results by uploaded time and let the user choose if they prefer ascending or descending ordering.
-- Let the user favorite GIFs and list their favorites. The users should be able to retrieve their favorite GIFs even after refreshing the page.
-- Provide the ultimate user experience: scrolling, searching, fetching… could be optimized for UX.
-- Let the user upload a GIF.
-- Add some unit tests.
+<h2>Netlify:</h2>
+Extremely easy to setup, maintain, and provides continuous deployment.
 
 
-### Project Structure
+<h2>Font-end Variables:</h2>
 
-We've included all of the boilerplate to get started with this project using [create-react-app](https://github.com/facebookincubator/create-react-app), feel free to use this structure if you'd like. If you'd prefer to use something other than React or you'd prefer a different project structure, go ahead and make any changes you'd like.
+`REACT_APP_API` is the api key from Giphy.
 
-### Evaluation
+<h2>Using the Application:</h2>
 
-The app should run on any computer by running `npm install` and `npm start`.
-We’ll evaluate the exercise by looking at the end result and the code.
+<ol>
+<li>Package manager: Npm was used to build this project. </li>
+<li>Fork and clone repo</li>
+<li>Add a .env file at the root of each folder (same level as package.json). Add environment variables.</li>
+<li>Run npm install to install the necessary node_modules</li>
+<li>Once completed run npm start to start the application. </li>
+  </ol>
+  
 
-### Notes
-
-Please, don't open a PR against this repo. Just follow the direction from the recruiter on how to submit the exercise.
-
-### Coding at Eaze
-
-At [Eaze](https://www.eaze.com) we strive for writing simple, maintainable and clean code.
-
-We prefer simplicity over complexity.
-
-We comment our code and commit often.
-
-We love our users and we really care about providing a good user experience and pleasant UI.
-
-We encourage out of the box thinking and we love to be impressed!
 
